@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Gaji;
 
 class Pegawai extends Model
 {
@@ -27,5 +28,19 @@ class Pegawai extends Model
     public function departemen()
     {
         return $this->belongsTo(Departemen::class, 'id_departemen', 'id_departemen');
+    }
+
+    // Relasi Ke Gaji
+    public function gaji()
+    {
+        return $this->hasMany(Gaji::class, 'id_pegawai');
+    }
+
+    public function show($id)
+    {
+        $pegawai = Pegawai::with('jabatan', 'departemen')->findOrFail($id);
+        $gaji = Gaji::where('id_pegawai', $id)->get();
+
+        return view('pegawai.show', compact('pegawai', 'gaji'));
     }
 }

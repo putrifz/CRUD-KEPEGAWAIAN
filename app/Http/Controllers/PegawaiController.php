@@ -59,6 +59,12 @@ class PegawaiController extends Controller
     return redirect()->route('pegawai.index')->with('success', 'Data pegawai berhasil diperbarui');
 }
 
+public function show($id)
+{
+    $pegawai = Pegawai::with(['jabatan', 'departemen'])->findOrFail($id);
+    return view('pegawai.show', compact('pegawai'));
+}
+
 
     public function destroy(Pegawai $pegawai)
     {

@@ -22,6 +22,8 @@
                 <td>{{ $p->departemen->nama_departemen }}</td>
                 <td>{{ $p->tanggal_masuk }}</td>
                 <td>
+                    <a href="{{ route('pegawai.show', $p->id_pegawai) }}" class="btn btn-info">Detail</a>
+
                     <a href="{{ route('pegawai.edit', $p->id_pegawai) }}" class="btn btn-warning">Edit</a>
                     
                     <form action="{{ route('pegawai.destroy', $p->id_pegawai) }}" method="POST" style="display:inline;">
