@@ -61,7 +61,7 @@ class PegawaiController extends Controller
 
 public function show($id)
 {
-    $pegawai = Pegawai::with(['jabatan', 'departemen'])->findOrFail($id);
+    $pegawai = Pegawai::with(['jabatan', 'departemen', 'gaji'])->findOrFail($id);
     return view('pegawai.show', compact('pegawai'));
 }
 
